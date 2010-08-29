@@ -1,14 +1,32 @@
 (defpackage :lists
 	(:use :cl))
 
+(defpackage :ui
+	(:use :cl)
+	(:export #:read-item
+					 #:print-list
+					 #:print-menu
+					 #:menu-select
+					 #:print-instructions))
+
+(defpackage :data
+	(:use :cl)
+	(:export #:ordered-list
+					 #:empty-list
+					 #:ordered-list-items
+					 #:ordered-list-title
+					 #:add-to-list))
+
 (in-package :lists)
 
 (defun main () 
 	(progn
-		(let ((*list* nil))
+		(ui:print-instructions)
+		(ui:print-menu)
+		(format t "~& ~& ## ~a ## ~& ~&" (ui:menu-select))
+		(let ((*list* (data:empty-list)))
 			(loop 
-				(let ((x (string (read))))
+				(let ((x (ui:read-item)))
 					(progn
-						(setq *list* (reverse (list* x (reverse *list*))))
-						(format t "~&")
-						(format t "~a~&" *list*)))))))
+						(setq *list* (data:add-to-list *list* x))
+						(ui:print-list *list*)))))))
