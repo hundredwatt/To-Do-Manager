@@ -15,14 +15,17 @@
 		(format t  "~& ~&")))
 
 (setf menu 
-	'((1 "Show All List Names")
-		(2 "Select a list")
-		(3 "Create a new list")))
+	'((1 '("Show All List Names" 'tasks:show))
+		(2 '("Select a list" 'tasks:select))
+		(3 '("Create a new list" 'tasks:add))))
 
 (defun print-menu () 
 	(loop for x in menu do
-		(format t "~a: ~a ~&" (car x) (cdr x))))
+		(format t "~a: ~a ~&" (car x) (car (cadadr x)))))
 
 (defun menu-select ()
 	(let ((token (read)))
-		(assoc token menu)))
+		(let ((sel (assoc token menu)))
+			(cond 
+				((eq nil sel)  '() )
+				('t (cdr (cadadr sel)))))))

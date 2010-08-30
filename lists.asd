@@ -3,6 +3,10 @@
 		(:module  :src
 							:components (
 														(:file "packages")
+														(:module  :tasks
+																			:depends-on ("packages" "data" "ui")
+																			:components (
+																				(:file "tasks")))
 														(:module  :data
 																			:depends-on ("packages")
 																			:components (
