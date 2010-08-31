@@ -23,10 +23,13 @@
 	(loop for x in menu do
 		(format t "~a: ~a ~&" (car x) (caadr x))))
 
+(defun show-prompt (prompt)
+	(progn 
+		(format t " ~&~a: " prompt)
+		(force-output)))
 (defun menu-select ()
 	(progn 
-		(format t " ~&Select Task: ")
-		(force-output)
+		(show-prompt "Select Task")
 		(let ((token (read)))
 			(let ((sel (assoc token menu)))
 				(cond 
@@ -35,6 +38,7 @@
 
 (defun prompt-name ()
 	(progn
-		(format t " ~&Enter Name: ")
-		(force-output)
+		(show-prompt "Enter Name")
 		(read-line)))
+
+
