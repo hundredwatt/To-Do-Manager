@@ -24,8 +24,11 @@
 		(format t "~a: ~a ~&" (car x) (car (cadadr x)))))
 
 (defun menu-select ()
-	(let ((token (read)))
-		(let ((sel (assoc token menu)))
-			(cond 
-				((eq nil sel)  '() )
-				('t (cdr (cadadr sel)))))))
+	(progn 
+		(format t "Select Task: ")
+		(force-output)
+		(let ((token (read)))
+			(let ((sel (assoc token menu)))
+				(cond 
+					((eq nil sel)  '() )
+					('t (cdr (cadadr sel))))))))
