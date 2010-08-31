@@ -14,5 +14,5 @@
 	(identity lm))
 
 (defun add (lm)
-	(identity lm))
+	(data:new-list lm (ui:prompt-name)))
 

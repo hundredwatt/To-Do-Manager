@@ -2,8 +2,8 @@
 
 (defstruct (ordered-list) items title)
 
-(defun empty-list ()
-	(make-ordered-list :items nil :title "My List"))
+(defun empty-list (&optional name)
+	(make-ordered-list :items nil :title name))
 
 (defun add-to-list (mylist item)
 	(let ((current_list (ordered-list-items mylist)) (x item))
@@ -17,9 +17,9 @@
 (defun list-master-count (lm)
 	(length (list-master-lists)))
 
-(defun new-list (lm)
+(defun new-list (lm name)
 	(let ((cur (list-master-lists lm)))
-		(make-list-master :lists (list* (empty-list) cur))))
+		(make-list-master :lists (list* (empty-list name) cur))))
 
 (defun list-lists ()
 	'())

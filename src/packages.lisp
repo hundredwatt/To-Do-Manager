@@ -5,6 +5,7 @@
 	(:use :cl)
 	(:export #:read-item
 					 #:print-list
+					 #:prompt-name
 					 #:print-menu
 					 #:menu-select
 					 #:print-instructions))

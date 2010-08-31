@@ -15,20 +15,26 @@
 		(format t  "~& ~&")))
 
 (setf menu 
-	'((1 '("Show All List Names" 'tasks:show))
-		(2 '("Select a list" 'tasks:select))
-		(3 '("Create a new list" 'tasks:add))))
+	'((1 ("Show All List Names" 'tasks:show))
+		(2 ("Select a list" 'tasks:select))
+		(3 ("Create a new list" 'tasks:add))))
 
 (defun print-menu () 
 	(loop for x in menu do
-		(format t "~a: ~a ~&" (car x) (car (cadadr x)))))
+		(format t "~a: ~a ~&" (car x) (caadr x))))
 
 (defun menu-select ()
 	(progn 
-		(format t "Select Task: ")
+		(format t " ~&Select Task: ")
 		(force-output)
 		(let ((token (read)))
 			(let ((sel (assoc token menu)))
 				(cond 
 					((eq nil sel)  '() )
-					('t (cdr (cadadr sel))))))))
+					('t (cdr (cadr sel))))))))
+
+(defun prompt-name ()
+	(progn
+		(format t " ~&Enter Name: ")
+		(force-output)
+		(read-line)))
