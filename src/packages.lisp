@@ -6,6 +6,7 @@
 	(:export #:read-item
 					 #:print-list
 					 #:prompt-name
+					 #:show-prompt
 					 #:print-menu
 					 #:menu-select
 					 #:print-instructions))
